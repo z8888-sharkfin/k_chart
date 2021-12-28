@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:k_chart/chart_translations.dart';
+import 'package:k_chart/entity/extra_buy_sell_signal.dart';
 import 'package:k_chart/extension/map_ext.dart';
 import 'package:k_chart/flutter_k_chart.dart';
 
@@ -25,6 +26,7 @@ class TimeFormat {
 
 class KChartWidget extends StatefulWidget {
   final List<KLineEntity>? datas;
+  final List<ExtraBuySellSignal>? extraBuySellSignals;
   final MainState mainState;
   final bool volHidden;
   final SecondaryState secondaryState;
@@ -57,6 +59,7 @@ class KChartWidget extends StatefulWidget {
 
   KChartWidget(
     this.datas,
+    this.extraBuySellSignals,
     this.chartStyle,
     this.chartColors, {
     required this.isTrendLine,
@@ -137,10 +140,14 @@ class _KChartWidgetState extends State<KChartWidget>
     final _painter = ChartPainter(
       widget.chartStyle,
       widget.chartColors,
-      lines: lines, //For TrendLine
-      isTrendLine: widget.isTrendLine, //For TrendLine
-      selectY: mSelectY, //For TrendLine
+      lines: lines,
+      //For TrendLine
+      isTrendLine: widget.isTrendLine,
+      //For TrendLine
+      selectY: mSelectY,
+      //For TrendLine
       datas: widget.datas,
+      extraBuySellSignals: widget.extraBuySellSignals,
       scaleX: mScaleX,
       scrollX: mScrollX,
       selectX: mSelectX,

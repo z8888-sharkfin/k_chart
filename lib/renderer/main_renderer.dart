@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:k_chart/entity/extra_buy_sell_signal.dart';
+import 'package:k_chart/entity/k_line_entity.dart';
 
 import '../entity/candle_entity.dart';
 import '../k_chart_widget.dart' show MainState;
@@ -115,6 +117,7 @@ class MainRenderer extends BaseChartRenderer<CandleEntity> {
   void drawChart(CandleEntity lastPoint, CandleEntity curPoint, double lastX,
       double curX, Size size, Canvas canvas) {
     if (isLine != true) {
+      //画出蜡烛图！！！
       drawCandle(curPoint, canvas, curX);
     }
     if (isLine == true) {
@@ -288,5 +291,41 @@ class MainRenderer extends BaseChartRenderer<CandleEntity> {
     afzalContentRec = _contentRect.top;
 
     return (maxValue - y) * scaleY + _contentRect.top;
+  }
+
+  @override
+  void drawBuySellSignal(CandleEntity curPoint, double curX,
+      List<ExtraBuySellSignal>? buysellList, Canvas canvas) {
+    if (curPoint == null) {
+      return;
+    }
+    if (buysellList == null) {
+      return;
+    }
+    if (curPoint is KLineEntity) {
+      var theTime = curPoint.time;
+      var result = buysellList.firstWhere((element) => element.time == theTime,
+          orElse: () =>
+              ExtraBuySellSignal(time: -1, isBuy: false, isSell: false));
+
+      if (result == null || result.time == -1) {
+        return;
+      }
+      var isBuy = false;
+      if (result.isBuy) {
+        isBuy = true;
+      } else if (result.isSell) {
+        isBuy = false;
+      }
+      double r = mCandleWidth / 2;
+      var buyColor = this.chartColors.upColor.withOpacity(0.4);
+      var sellColor = this.chartColors.dnColor.withOpacity(0.4);
+      chartPaint.color = isBuy ? buyColor : sellColor;
+
+      canvas.drawRect(
+          Rect.fromLTRB(
+              curX - r, _contentRect.top, curX + r, _contentRect.bottom),
+          chartPaint);
+    }
   }
 }

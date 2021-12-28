@@ -58,6 +58,7 @@ class ChartPainter extends BaseChartPainter {
     required this.isTrendLine, //For TrendLine
     required this.selectY, //For TrendLine
     required datas,
+    required extraBuySellSignals,
     required scaleX,
     required scrollX,
     required isLongPass,
@@ -78,6 +79,7 @@ class ChartPainter extends BaseChartPainter {
   })  : assert(bgColor == null || bgColor.length >= 2),
         super(chartStyle,
             datas: datas,
+            extraBuySellSignals: extraBuySellSignals,
             scaleX: scaleX,
             scrollX: scrollX,
             isLongPress: isLongPass,
@@ -192,12 +194,14 @@ class ChartPainter extends BaseChartPainter {
       KLineEntity lastPoint = i == 0 ? curPoint : datas![i - 1];
       double curX = getX(i);
       double lastX = i == 0 ? curX : getX(i - 1);
-
+      //todo 关键方法，画k线
       mMainRenderer.drawChart(lastPoint, curPoint, lastX, curX, size, canvas);
       mVolRenderer?.drawChart(lastPoint, curPoint, lastX, curX, size, canvas);
       mSecondaryRenderer?.drawChart(
           lastPoint, curPoint, lastX, curX, size, canvas);
+      mMainRenderer.drawBuySellSignal(curPoint, curX, extraBuySellSignals, canvas);
     }
+
 
     if ((isLongPress == true || (isTapShowInfoDialog && isOnTap)) &&
         isTrendLine == false) {
@@ -548,4 +552,5 @@ class ChartPainter extends BaseChartPainter {
   bool isInMainRect(Offset point) {
     return mMainRect.contains(point);
   }
+
 }
