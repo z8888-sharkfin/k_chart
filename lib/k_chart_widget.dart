@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:k_chart/chart_translations.dart';
-import 'package:k_chart/entity/extra_buy_sell_signal.dart';
-import 'package:k_chart/extension/map_ext.dart';
-import 'package:k_chart/flutter_k_chart.dart';
+import 'package:k_chart_pw/chart_translations.dart';
+import 'package:k_chart_pw/entity/extra_buy_sell_signal.dart';
+import 'package:k_chart_pw/extension/map_ext.dart';
+import 'package:k_chart_pw/flutter_k_chart.dart';
 
 enum MainState { MA, BOLL, NONE }
 enum SecondaryState { MACD, KDJ, RSI, WR, CCI, NONE }

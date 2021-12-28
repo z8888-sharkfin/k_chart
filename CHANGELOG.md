@@ -57,3 +57,6 @@
 * Add click show detailed data.
 * View display area boundary value drawing. 
 * Always show the now price.
+
+## [0.5.1]
+*  added the function that will show buy sell signal on the charts

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:k_chart/entity/extra_buy_sell_signal.dart';
+import 'package:k_chart_pw/entity/extra_buy_sell_signal.dart';
 
 export '../chart_style.dart';
 

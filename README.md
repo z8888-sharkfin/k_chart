@@ -1,3 +1,8 @@
+We forked from https://github.com/OpenFlutter/k_chart and add function of showing buy and sell signal
+
+
+------
+Raw README.md
 # k_chart
 Maybe this is the best k chart in Flutter.Support drag,scale,long press,fling.And easy to use.
 
@@ -80,3 +85,7 @@ Buy a cup of coffee for the author.
 
 #### Other
 Maybe there are some bugs in this k chart,or you want new indicators,you can create a pull request.I will happy to accept it and I hope we can make it better.
+
+----------
+
+The version of fork

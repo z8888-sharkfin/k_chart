@@ -2,8 +2,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart'
     show Color, TextStyle, Rect, Canvas, Size, CustomPainter;
-import 'package:k_chart/entity/extra_buy_sell_signal.dart';
-import 'package:k_chart/utils/date_format_util.dart';
+import 'package:k_chart_pw/entity/extra_buy_sell_signal.dart';
+import 'package:k_chart_pw/utils/date_format_util.dart';
 
 import '../chart_style.dart' show ChartStyle;
 import '../entity/k_line_entity.dart';

@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:k_chart/utils/number_util.dart';
+import 'package:k_chart_pw/utils/number_util.dart';
 
 import '../entity/index.dart';
 
