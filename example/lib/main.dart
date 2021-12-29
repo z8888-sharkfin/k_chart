@@ -3,11 +3,11 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
-import 'package:k_chart/chart_style.dart';
-import 'package:k_chart/chart_translations.dart';
-import 'package:k_chart/entity/extra_buy_sell_signal.dart';
-import 'package:k_chart/flutter_k_chart.dart';
-import 'package:k_chart/k_chart_widget.dart';
+import 'package:k_chart_pw/chart_style.dart';
+import 'package:k_chart_pw/chart_translations.dart';
+import 'package:k_chart_pw/entity/extra_buy_sell_signal.dart';
+import 'package:k_chart_pw/flutter_k_chart.dart';
+import 'package:k_chart_pw/k_chart_widget.dart';
 
 void main() => runApp(MyApp());
 
@@ -105,13 +105,14 @@ class _MyHomePageState extends State<MyHomePage> {
             width: double.infinity,
             child: KChartWidget(
               datas,
-              extraBuySellSignals,
               chartStyle,
               chartColors,
               isLine: isLine,
               onSecondaryTap: () {
                 print('SSecondary Tap');
               },
+              default_scale_x: 0.4,
+              extraBuySellSignals: this.extraBuySellSignals,
               isTrendLine: _isTrendLine,
               mainState: _mainState,
               volHidden: _volHidden,

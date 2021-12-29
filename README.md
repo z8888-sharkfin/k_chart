@@ -1,8 +1,18 @@
-We forked from https://github.com/OpenFlutter/k_chart and add function of showing buy and sell signal
+We forked from https://github.com/OpenFlutter/k_chart
+and add some function to meet our requirments.
+
+## [0.5.1]
+* added the function that will show buy sell signal on the charts
+
+## [0.5.2]
+* support set scale-x from parameter when build widget.it solve the problem that on the flutter web,the gesture scale not work.
+
+how to publish
+
 
 
 ------
-Raw README.md
+# Raw README.md from forked project
 # k_chart
 Maybe this is the best k chart in Flutter.Support drag,scale,long press,fling.And easy to use.
 

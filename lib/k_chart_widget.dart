@@ -26,7 +26,7 @@ class TimeFormat {
 
 class KChartWidget extends StatefulWidget {
   final List<KLineEntity>? datas;
-  final List<ExtraBuySellSignal>? extraBuySellSignals;
+  List<ExtraBuySellSignal>? extraBuySellSignals;
   final MainState mainState;
   final bool volHidden;
   final SecondaryState secondaryState;
@@ -56,35 +56,33 @@ class KChartWidget extends StatefulWidget {
   final ChartStyle chartStyle;
   final VerticalTextAlignment verticalTextAlignment;
   final bool isTrendLine;
+  final double default_scale_x;
 
-  KChartWidget(
-    this.datas,
-    this.extraBuySellSignals,
-    this.chartStyle,
-    this.chartColors, {
-    required this.isTrendLine,
-    this.mainState = MainState.MA,
-    this.secondaryState = SecondaryState.MACD,
-    this.onSecondaryTap,
-    this.volHidden = false,
-    this.isLine = false,
-    this.isTapShowInfoDialog = false,
-    this.hideGrid = false,
-    @Deprecated('Use `translations` instead.') this.isChinese = false,
-    this.showNowPrice = true,
-    this.showInfoDialog = true,
-    this.translations = kChartTranslations,
-    this.timeFormat = TimeFormat.YEAR_MONTH_DAY,
-    this.onLoadMore,
-    @Deprecated('Use `chartColors` instead.') this.bgColor,
-    this.fixedLength = 2,
-    this.maDayList = const [5, 10, 20],
-    this.flingTime = 600,
-    this.flingRatio = 0.5,
-    this.flingCurve = Curves.decelerate,
-    this.isOnDrag,
-    this.verticalTextAlignment = VerticalTextAlignment.left,
-  });
+  KChartWidget(this.datas, this.chartStyle, this.chartColors,
+      {required this.isTrendLine,
+      this.mainState = MainState.MA,
+      this.secondaryState = SecondaryState.MACD,
+      this.onSecondaryTap,
+      this.volHidden = false,
+      this.isLine = false,
+      this.isTapShowInfoDialog = false,
+      this.hideGrid = false,
+      @Deprecated('Use `translations` instead.') this.isChinese = false,
+      this.showNowPrice = true,
+      this.showInfoDialog = true,
+      this.translations = kChartTranslations,
+      this.timeFormat = TimeFormat.YEAR_MONTH_DAY,
+      this.onLoadMore,
+      @Deprecated('Use `chartColors` instead.') this.bgColor,
+      this.fixedLength = 2,
+      this.maDayList = const [5, 10, 20],
+      this.flingTime = 600,
+      this.flingRatio = 0.5,
+      this.flingCurve = Curves.decelerate,
+      this.isOnDrag,
+      this.verticalTextAlignment = VerticalTextAlignment.left,
+      this.default_scale_x = 1.0,
+      this.extraBuySellSignals});
 
   @override
   _KChartWidgetState createState() => _KChartWidgetState();
@@ -135,8 +133,10 @@ class _KChartWidgetState extends State<KChartWidget>
   Widget build(BuildContext context) {
     if (widget.datas != null && widget.datas!.isEmpty) {
       mScrollX = mSelectX = 0.0;
-      mScaleX = 1.0;
+      mScaleX = widget.default_scale_x;
     }
+    mScaleX = widget.default_scale_x;
+
     final _painter = ChartPainter(
       widget.chartStyle,
       widget.chartColors,

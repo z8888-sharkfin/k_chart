@@ -58,5 +58,10 @@
 * View display area boundary value drawing. 
 * Always show the now price.
 
+----
+new fork version below:
 ## [0.5.1]
-*  added the function that will show buy sell signal on the charts
+* added the function that will show buy sell signal on the charts
+
+## [0.5.2]
+* support set scale-x from parameter when build widget.it solve the problem that on the flutter web,the gesture scale not work.
