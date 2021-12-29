@@ -11,7 +11,7 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^0.1.2
   http: ^0.13.3
-  k_chart:
+  k_chart_pw:
     path: ../
 
 dev_dependencies:
