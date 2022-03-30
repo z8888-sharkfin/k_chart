@@ -2,6 +2,7 @@ import 'dart:async' show StreamSink;
 
 import 'package:flutter/material.dart';
 import 'package:k_chart_pw/entity/extra_line.dart';
+import 'package:k_chart_pw/entity/extra_text_label.dart';
 import 'package:k_chart_pw/utils/number_util.dart';
 
 import '../entity/info_window_entity.dart';
@@ -34,6 +35,7 @@ class ChartPainter extends BaseChartPainter {
   final List<Line> lines; //For TrendLine
   final bool isTrendLine; //For TrendLine
   final List<ExtraLine>? extraLineList;
+  final List<ExtraTextLabel>? extraTextLabelList;
   bool isrecordingCord = false; //For TrendLine
   final double selectY; //For TrendLine
   static get maxScrollX => BaseChartPainter.maxScrollX;
@@ -77,7 +79,8 @@ class ChartPainter extends BaseChartPainter {
       this.bgColor,
       this.fixedLength = 2,
       this.maDayList = const [5, 10, 20],
-      this.extraLineList})
+      this.extraLineList,
+      this.extraTextLabelList})
       : assert(bgColor == null || bgColor.length >= 2),
         super(chartStyle,
             datas: datas,
@@ -213,7 +216,25 @@ class ChartPainter extends BaseChartPainter {
     }
     if (isTrendLine == true) drawTrendLines(canvas, size);
     drawExtraLines(extraLineList, canvas);
+    drawExtraTextLabels(extraTextLabelList, canvas);
+
     canvas.restore();
+  }
+
+  void drawExtraTextLabels(List<ExtraTextLabel>? textLabels, Canvas canvas) {
+    if (textLabels == null) return;
+    if (textLabels.isEmpty) return;
+    for (int i = 0; i < textLabels.length; i++) {
+      var data = textLabels[i];
+
+      TextSpan span =
+          new TextSpan(text: data.textContent, style: data.textStyle);
+      TextPainter tp =
+          TextPainter(text: span, textDirection: TextDirection.ltr);
+      tp.layout();
+      tp.paint(
+          canvas, Offset(getX(data.startIndex), getMainY(data.startPrice)));
+    }
   }
 
   var defaultLinePaint = Paint()
@@ -230,6 +251,11 @@ class ChartPainter extends BaseChartPainter {
       var beginOffset =
           Offset(getX(data.startIndex), getMainY(data.startPrice));
       var endOffset = Offset(getX(data.endIndex), getMainY(data.endPrice));
+      var assignedColor = data.color;
+      if (assignedColor != null) {
+        defaultLinePaint.color = assignedColor;
+      }
+
       canvas.drawLine(beginOffset, endOffset, defaultLinePaint);
     }
   }

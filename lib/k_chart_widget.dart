@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:k_chart_pw/chart_translations.dart';
 import 'package:k_chart_pw/entity/extra_buy_sell_signal.dart';
 import 'package:k_chart_pw/entity/extra_line.dart';
+import 'package:k_chart_pw/entity/extra_text_label.dart';
 import 'package:k_chart_pw/extension/map_ext.dart';
 import 'package:k_chart_pw/flutter_k_chart.dart';
 
@@ -29,6 +30,7 @@ class KChartWidget extends StatefulWidget {
   final List<KLineEntity>? datas;
   List<ExtraBuySellSignal>? extraBuySellSignals;
   List<ExtraLine>? extraLineList;
+  List<ExtraTextLabel>? extraTextLabelList;
   final MainState mainState;
   final bool volHidden;
   final SecondaryState secondaryState;
@@ -85,7 +87,9 @@ class KChartWidget extends StatefulWidget {
       this.verticalTextAlignment = VerticalTextAlignment.left,
       this.default_scale_x = 1.0,
       this.extraBuySellSignals,
-      this.extraLineList});
+      this.extraLineList,
+      this.extraTextLabelList
+      });
 
   @override
   _KChartWidgetState createState() => _KChartWidgetState();
@@ -150,6 +154,7 @@ class _KChartWidgetState extends State<KChartWidget>
       selectY: mSelectY,
       //For TrendLine
       extraLineList: widget.extraLineList,
+      extraTextLabelList: widget.extraTextLabelList,
       datas: widget.datas,
       extraBuySellSignals: widget.extraBuySellSignals,
       scaleX: mScaleX,

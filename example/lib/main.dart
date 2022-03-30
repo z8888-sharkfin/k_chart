@@ -7,6 +7,7 @@ import 'package:k_chart_pw/chart_style.dart';
 import 'package:k_chart_pw/chart_translations.dart';
 import 'package:k_chart_pw/entity/extra_buy_sell_signal.dart';
 import 'package:k_chart_pw/entity/extra_line.dart';
+import 'package:k_chart_pw/entity/extra_text_label.dart';
 import 'package:k_chart_pw/flutter_k_chart.dart';
 import 'package:k_chart_pw/k_chart_widget.dart';
 
@@ -38,6 +39,7 @@ class _MyHomePageState extends State<MyHomePage> {
   List<KLineEntity>? datas;
   List<ExtraBuySellSignal>? extraBuySellSignals = [];
   List<ExtraLine> extraLineList = [];
+  List<ExtraTextLabel> extraTextLabel = [];
   bool showLoading = true;
   MainState _mainState = MainState.MA;
   bool _volHidden = false;
@@ -116,6 +118,7 @@ class _MyHomePageState extends State<MyHomePage> {
               default_scale_x: 0.4,
               extraBuySellSignals: this.extraBuySellSignals,
               extraLineList: this.extraLineList,
+              extraTextLabelList: this.extraTextLabel,
               isTrendLine: _isTrendLine,
               mainState: _mainState,
               volHidden: _volHidden,
@@ -283,10 +286,23 @@ class _MyHomePageState extends State<MyHomePage> {
         startIndex: 0,
         startPrice: 29888,
         endIndex: theData != null ? theData.length - 1 : 100,
-        endPrice: 60000));
+        endPrice: 60000,
+        color: Colors.blue));
 
     extraLineList.add(ExtraLine(
-        startIndex: 0, startPrice: 50000, endIndex: 100, endPrice: 40000));
+        startIndex: 0,
+        startPrice: 50000,
+        endIndex: 100,
+        endPrice: 40000,
+        color: Colors.amberAccent));
+
+    extraTextLabel.add(ExtraTextLabel(
+        startIndex: 10, startPrice: 50000, textContent: " world you "));
+
+
+    extraTextLabel.add(ExtraTextLabel(
+        startIndex: 100, startPrice: 50000, textContent: " hello you "));
+
     showLoading = false;
     setState(() {});
   }

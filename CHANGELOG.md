@@ -68,3 +68,6 @@ new fork version below:
 
 ## [0.5.3]
 * support extra line draw on the charts
+
+## [0.5.4]
+* support extra text label draw on the charts

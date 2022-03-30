@@ -14,11 +14,15 @@ all the version below are the version we released.
 ## [0.5.3]
 * support extra line draw on the charts
 
+## [0.5.4]
+* support extra text label draw on the charts
+
 
 
 how to publish:
 https://dart.cn/tools/pub/publishing
 
+dart pub publish --dry-run
 
 ------
 # Raw README.md from forked project
