@@ -1,12 +1,12 @@
 // ignore_for_file: non_constant_identifier_names,library_prefixes,unused_import,camel_case_types
-class Line {
+class ExtraLine {
   int startIndex;
   double startPrice;
 
   int endIndex;
   double endPrice;
 
-  Line({
+  ExtraLine({
     required this.startIndex,
     required this.startPrice,
     required this.endIndex,

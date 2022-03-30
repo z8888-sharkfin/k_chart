@@ -1,6 +1,7 @@
 import 'dart:async' show StreamSink;
 
 import 'package:flutter/material.dart';
+import 'package:k_chart_pw/entity/extra_line.dart';
 import 'package:k_chart_pw/utils/number_util.dart';
 
 import '../entity/info_window_entity.dart';
@@ -24,6 +25,7 @@ class Line {
 
 //For TrendLine
 double? afzlx;
+
 double? afzl() {
   return afzlx;
 }
@@ -31,6 +33,7 @@ double? afzl() {
 class ChartPainter extends BaseChartPainter {
   final List<Line> lines; //For TrendLine
   final bool isTrendLine; //For TrendLine
+  final List<ExtraLine>? extraLineList;
   bool isrecordingCord = false; //For TrendLine
   final double selectY; //For TrendLine
   static get maxScrollX => BaseChartPainter.maxScrollX;
@@ -51,35 +54,35 @@ class ChartPainter extends BaseChartPainter {
   final bool showNowPrice;
   final VerticalTextAlignment verticalTextAlignment;
 
-  ChartPainter(
-    this.chartStyle,
-    this.chartColors, {
-    required this.lines, //For TrendLine
-    required this.isTrendLine, //For TrendLine
-    required this.selectY, //For TrendLine
-    required datas,
-    required extraBuySellSignals,
-    required scaleX,
-    required scrollX,
-    required isLongPass,
-    required selectX,
-    isOnTap,
-    isTapShowInfoDialog,
-    required this.verticalTextAlignment,
-    mainState,
-    volHidden,
-    secondaryState,
-    this.sink,
-    bool isLine = false,
-    this.hideGrid = false,
-    this.showNowPrice = true,
-    this.bgColor,
-    this.fixedLength = 2,
-    this.maDayList = const [5, 10, 20],
-  })  : assert(bgColor == null || bgColor.length >= 2),
+  ChartPainter(this.chartStyle, this.chartColors,
+      {required this.lines, //For TrendLine
+      required this.isTrendLine, //For TrendLine
+      required this.selectY, //For TrendLine
+      required datas,
+      required extraBuySellSignals,
+      required scaleX,
+      required scrollX,
+      required isLongPass,
+      required selectX,
+      isOnTap,
+      isTapShowInfoDialog,
+      required this.verticalTextAlignment,
+      mainState,
+      volHidden,
+      secondaryState,
+      this.sink,
+      bool isLine = false,
+      this.hideGrid = false,
+      this.showNowPrice = true,
+      this.bgColor,
+      this.fixedLength = 2,
+      this.maDayList = const [5, 10, 20],
+      this.extraLineList})
+      : assert(bgColor == null || bgColor.length >= 2),
         super(chartStyle,
             datas: datas,
             extraBuySellSignals: extraBuySellSignals,
+            linesForDraw: extraLineList,
             scaleX: scaleX,
             scrollX: scrollX,
             isLongPress: isLongPass,
@@ -199,9 +202,9 @@ class ChartPainter extends BaseChartPainter {
       mVolRenderer?.drawChart(lastPoint, curPoint, lastX, curX, size, canvas);
       mSecondaryRenderer?.drawChart(
           lastPoint, curPoint, lastX, curX, size, canvas);
-      mMainRenderer.drawBuySellSignal(curPoint, curX, extraBuySellSignals, canvas);
+      mMainRenderer.drawBuySellSignal(
+          curPoint, curX, extraBuySellSignals, canvas);
     }
-
 
     if ((isLongPress == true || (isTapShowInfoDialog && isOnTap)) &&
         isTrendLine == false) {
@@ -209,7 +212,26 @@ class ChartPainter extends BaseChartPainter {
       drawCrossLineText(canvas, size);
     }
     if (isTrendLine == true) drawTrendLines(canvas, size);
+    drawExtraLines(extraLineList, canvas);
     canvas.restore();
+  }
+
+  var defaultLinePaint = Paint()
+    ..isAntiAlias = true
+    ..color = Colors.lightBlueAccent
+    ..style = PaintingStyle.stroke
+    ..strokeWidth = 1.0;
+
+  void drawExtraLines(List<ExtraLine>? lineList, Canvas canvas) {
+    if (lineList == null) return;
+    if (lineList.isEmpty) return;
+    for (int i = 0; i < lineList.length; i++) {
+      var data = lineList[i];
+      var beginOffset =
+          Offset(getX(data.startIndex), getMainY(data.startPrice));
+      var endOffset = Offset(getX(data.endIndex), getMainY(data.endPrice));
+      canvas.drawLine(beginOffset, endOffset, defaultLinePaint);
+    }
   }
 
   @override
@@ -552,5 +574,4 @@ class ChartPainter extends BaseChartPainter {
   bool isInMainRect(Offset point) {
     return mMainRect.contains(point);
   }
-
 }

@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:k_chart_pw/chart_style.dart';
 import 'package:k_chart_pw/chart_translations.dart';
 import 'package:k_chart_pw/entity/extra_buy_sell_signal.dart';
+import 'package:k_chart_pw/entity/extra_line.dart';
 import 'package:k_chart_pw/flutter_k_chart.dart';
 import 'package:k_chart_pw/k_chart_widget.dart';
 
@@ -36,6 +37,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   List<KLineEntity>? datas;
   List<ExtraBuySellSignal>? extraBuySellSignals = [];
+  List<ExtraLine> extraLineList = [];
   bool showLoading = true;
   MainState _mainState = MainState.MA;
   bool _volHidden = false;
@@ -113,6 +115,7 @@ class _MyHomePageState extends State<MyHomePage> {
               },
               default_scale_x: 0.4,
               extraBuySellSignals: this.extraBuySellSignals,
+              extraLineList: this.extraLineList,
               isTrendLine: _isTrendLine,
               mainState: _mainState,
               volHidden: _volHidden,
@@ -275,6 +278,15 @@ class _MyHomePageState extends State<MyHomePage> {
             ExtraBuySellSignal(time: theTime, isBuy: false, isSell: true));
       }
     }
+
+    extraLineList.add(ExtraLine(
+        startIndex: 0,
+        startPrice: 29888,
+        endIndex: theData != null ? theData.length - 1 : 100,
+        endPrice: 60000));
+
+    extraLineList.add(ExtraLine(
+        startIndex: 0, startPrice: 50000, endIndex: 100, endPrice: 40000));
     showLoading = false;
     setState(() {});
   }

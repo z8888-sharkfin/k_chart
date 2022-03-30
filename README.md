@@ -1,5 +1,8 @@
-We forked from https://github.com/OpenFlutter/k_chart
+We forked the project from https://github.com/OpenFlutter/k_chart
 and add some function to meet our requirments.
+
+all the version below are the version we released.
+
 
 ## [0.5.1]
 * added the function that will show buy sell signal on the charts
@@ -7,7 +10,11 @@ and add some function to meet our requirments.
 ## [0.5.2]
 * support set scale-x from parameter when build widget.it solve the problem that on the flutter web,the gesture scale not work.
 
-how to publish
+## [0.5.3]
+* support extra line draw on the charts
+
+
+
 
 
 

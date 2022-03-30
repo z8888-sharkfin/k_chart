@@ -7,6 +7,7 @@ import 'package:k_chart_pw/utils/date_format_util.dart';
 
 import '../chart_style.dart' show ChartStyle;
 import '../entity/k_line_entity.dart';
+import '../entity/extra_line.dart';
 import '../k_chart_widget.dart';
 
 export 'package:flutter/material.dart'
@@ -16,6 +17,7 @@ abstract class BaseChartPainter extends CustomPainter {
   static double maxScrollX = 0.0;
   List<KLineEntity>? datas;
   List<ExtraBuySellSignal>? extraBuySellSignals;
+  List<ExtraLine>? linesForDraw;
   MainState mainState;
 
   SecondaryState secondaryState;
@@ -52,6 +54,7 @@ abstract class BaseChartPainter extends CustomPainter {
     this.chartStyle, {
     this.datas,
     this.extraBuySellSignals,
+    this.linesForDraw,
     required this.scaleX,
     required this.scrollX,
     required this.isLongPress,

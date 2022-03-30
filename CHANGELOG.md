@@ -65,3 +65,6 @@ new fork version below:
 
 ## [0.5.2]
 * support set scale-x from parameter when build widget.it solve the problem that on the flutter web,the gesture scale not work.
+
+## [0.5.3]
+* support extra line draw on the charts
