@@ -1,3 +1,4 @@
+#Introduce
 We forked the project from https://github.com/OpenFlutter/k_chart
 and add some function to meet our requirments.
 
@@ -15,7 +16,8 @@ all the version below are the version we released.
 
 
 
-
+how to publish:
+https://dart.cn/tools/pub/publishing
 
 
 ------

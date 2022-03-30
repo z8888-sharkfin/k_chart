@@ -1,6 +1,6 @@
 name: k_chart_pw
-description: A Flutter K Chart. On the basis of the forked, we added the function that will show buy sell signal on the charts
-version: 0.5.1
+description: A Flutter K Chart. On the basis of the forked, we added the function that will show buy sell signal on the charts,and support draw lines on the charts
+version: 0.5.3
 homepage: https://github.com/pecpwee/k_chart
 
 environment:
