@@ -71,3 +71,6 @@ new fork version below:
 
 ## [0.5.4]
 * support extra text label draw on the charts
+
+## [0.5.5]
+* support text scale parameter in text label

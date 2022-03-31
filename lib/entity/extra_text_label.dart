@@ -14,10 +14,12 @@ class ExtraTextLabel {
 
   String textContent;
   TextStyle textStyle;
+  double textScale = 1.0;
 
   ExtraTextLabel(
       {required this.startIndex,
       required this.startPrice,
       required this.textContent,
-      this.textStyle = DEFAULT_STYLE});
+      this.textStyle = DEFAULT_STYLE,
+      this.textScale = 1.0});
 }

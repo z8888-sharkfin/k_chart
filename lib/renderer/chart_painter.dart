@@ -229,8 +229,10 @@ class ChartPainter extends BaseChartPainter {
 
       TextSpan span =
           new TextSpan(text: data.textContent, style: data.textStyle);
-      TextPainter tp =
-          TextPainter(text: span, textDirection: TextDirection.ltr);
+      TextPainter tp = TextPainter(
+          text: span,
+          textDirection: TextDirection.ltr,
+          textScaleFactor: data.textScale);
       tp.layout();
       tp.paint(
           canvas, Offset(getX(data.startIndex), getMainY(data.startPrice)));
