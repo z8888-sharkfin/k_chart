@@ -8,11 +8,13 @@ class ExtraLine {
   int endIndex;
   double endPrice;
   Color color;
+  double strokeWidth;
 
   ExtraLine(
       {required this.startIndex,
       required this.startPrice,
       required this.endIndex,
       required this.endPrice,
-      this.color = Colors.blue});
+      this.color = Colors.blue,
+      this.strokeWidth = 1.0});
 }

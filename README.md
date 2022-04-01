@@ -19,10 +19,12 @@ all the version below are the version we released.
 
 
 
-how to publish:
+## how to publish:
 https://dart.cn/tools/pub/publishing
 
 dart pub publish --dry-run
+
+dart pub publish
 
 ------
 # Raw README.md from forked project

@@ -74,3 +74,6 @@ new fork version below:
 
 ## [0.5.5]
 * support text scale parameter in text label
+
+## [0.5.6]
+* support line stroke width parameter

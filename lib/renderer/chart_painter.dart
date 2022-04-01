@@ -254,8 +254,12 @@ class ChartPainter extends BaseChartPainter {
           Offset(getX(data.startIndex), getMainY(data.startPrice));
       var endOffset = Offset(getX(data.endIndex), getMainY(data.endPrice));
       var assignedColor = data.color;
+      var assignedStrokeWidth = data.strokeWidth;
       if (assignedColor != null) {
         defaultLinePaint.color = assignedColor;
+      }
+      if (assignedStrokeWidth != null) {
+        defaultLinePaint.strokeWidth = assignedStrokeWidth;
       }
 
       canvas.drawLine(beginOffset, endOffset, defaultLinePaint);

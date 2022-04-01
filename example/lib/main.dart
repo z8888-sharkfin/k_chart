@@ -287,7 +287,8 @@ class _MyHomePageState extends State<MyHomePage> {
         startPrice: 29888,
         endIndex: theData != null ? theData.length - 1 : 100,
         endPrice: 60000,
-        color: Colors.blue));
+        color: Colors.blue,
+        strokeWidth: 2.0));
 
     extraLineList.add(ExtraLine(
         startIndex: 0,
@@ -298,7 +299,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
     extraTextLabel.add(ExtraTextLabel(
         startIndex: 10, startPrice: 50000, textContent: " world you "));
-
 
     extraTextLabel.add(ExtraTextLabel(
         startIndex: 100, startPrice: 50000, textContent: " hello you "));
