@@ -459,13 +459,13 @@ class ChartPainter extends BaseChartPainter {
           : this.chartColors.nowPriceDnColor;
     //先画横线
     double startX = 0;
-    final max = -mTranslateX + mWidth / scaleX;
+    final max = -mTranslateX + mWidth;
     final space =
         this.chartStyle.nowPriceLineSpan + this.chartStyle.nowPriceLineLength;
     while (startX < max) {
       canvas.drawLine(
           Offset(startX, y),
-          Offset(startX + this.chartStyle.nowPriceLineLength, y),
+          Offset(startX + this.chartStyle.nowPriceLineLength*scaleX, y),
           nowPricePaint);
       startX += space;
     }
